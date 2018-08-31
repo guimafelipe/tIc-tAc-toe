@@ -56,13 +56,15 @@ end
 function Board:play(char, x, y)
 	if self[x][y].value == nil then
 		self[x][y].value = char
-		local test = self:check_win()
+		local test = self:check_win(char)
 		if test == true then 
 			print("winner: ", char)
+			return true
 		else
 			self:change_turn()
 		end
 	end
+	return false
 end
 
 function Board:velha()
@@ -78,6 +80,17 @@ end
 
 function Board:print_board()
 	for i = 0, 2, 1 do
-		print(self[i][0], self[i][1], self[i][2])
+		print(self[i][0].value, self[i][1].value, self[i][2].value)
 	end
+end
+
+function Board:copy()
+	copy = Board:new()
+	copy:reset()
+	for i = 0, 2, 1 do
+		for j = 0, 2, 1 do
+			copy[i][j].value = self[i][j].value
+		end
+	end
+    return copy
 end

@@ -20,7 +20,7 @@ end
 
 function Cell:set_value(new_value)
     self.value = new_value
-    print(self.value, " ", self.x, " ", self.y)
+    -- print(self.value, " ", self.x, " ", self.y)
 end
 
 function Cell:set_origin(x, y)
