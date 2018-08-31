@@ -1,0 +1,3 @@
+--Implements minimax algorithm
+
+bot = {}
