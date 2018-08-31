@@ -20,6 +20,7 @@ function Board:reset()
 			-- else self[i][j]:set_value('O') end
 		end
 	end
+	self.turn = 'X'
 end 
 
 function Board:draw()
@@ -70,7 +71,7 @@ end
 function Board:velha()
 	for i = 0, 2, 1 do
 		for j = 0, 2, 1 do
-			if self[i][j] ~= nil then
+			if self[i][j].value == nil then
 				return false
 			end
 		end
