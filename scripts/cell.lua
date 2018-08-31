@@ -30,8 +30,10 @@ end
 
 function Cell:draw()
     if(self.value == nil) then return end
-    local posx = self.x * self.snap + self.ox
-    local posy = self.y * self.snap + self.oy
+    deltax = 10
+    deltay = 10
+    local posx = self.x * self.snap + Cell.ox + deltax
+    local posy = self.y * self.snap + Cell.oy + deltay
     if(self.value == 'X') then
         love.graphics.draw(xmark, posx, posy)    
     elseif (self.value == 'O') then

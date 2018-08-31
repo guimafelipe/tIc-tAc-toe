@@ -1,6 +1,6 @@
 require "scripts.cell"
 
-Board = {snap = 55, turn = 'X'}
+Board = {snap = 52, turn = 'X'}
 
 function Board:new(o)
     o = o or {}
@@ -26,7 +26,17 @@ end
 function Board:draw()
 	for i = 0, 2, 1 do
 		for j = 0, 2, 1 do
-			self[i][j]:draw() 
+			if self[i][j].value ~= nil then
+				self[i][j]:draw()
+			elseif selectedX == i and selectedY == j and winner == nil then
+				local cellSize = self.snap
+				local cellDrawSize = cellSize
+				love.graphics.setColor(.86, 0, .86, .2)
+				love.graphics.rectangle(
+					'fill', i*cellSize + self[i][j].ox, j*cellSize + self[i][j].oy,
+					cellDrawSize, cellDrawSize)
+				love.graphics.setColor(1,1,1,1)
+			end
 		end
 	end
 end

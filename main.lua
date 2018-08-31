@@ -2,9 +2,10 @@ require "scripts.cell"
 require "scripts.board"
 require "scripts.bot"
 
-Cell:set_origin(10, 10)
+Cell:set_origin(1, 1)
 board = Board:new()
 board:reset()
+board.snap = 53
 
 winner = nil
 
@@ -16,7 +17,13 @@ function love.load(arg)
 end
 
 function love.update(dt)
-	
+	local beforex, beforey = selectedX, selectedY
+	selectedX = math.floor((love.mouse.getX()-Cell.ox)/board.snap)
+	selectedY = math.floor((love.mouse.getY()-Cell.oy)/board.snap)
+	if beforex ~= selectedX and beforey ~= selectedY then
+		-- print(selectedX, selectedY)
+		-- print(Cell.ox, Cell.oy)
+	end
 end
 
 function love.draw(dt)
@@ -51,18 +58,15 @@ function love.mousepressed(x, y, button)
 		local result
 		result = board:play('X', cordx, cordy)
 		if result then 
-			winner = 'X winner'
+			winner = 'Player wins!'
 		elseif board:velha() then
-			winner = 'Deu velha'
+			winner = 'Tie!'
 		else
 			local i, j = decide(board)
-			print(i, j)
+			-- print(i, j)
 			result = board:play('O', i, j)
-			if result then winner = 'O winner' end
+			if result then winner = 'Bot wins!' end
 		end
-	end
-	if board:velha() == true then
-		winner = "Deu velha"
 	end
 	-- print(cordx, cordy)
 end
