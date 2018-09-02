@@ -8,10 +8,8 @@ function Cell:new(o)
 end
 
 function Cell:set_pos(x, y)
-    -- print("mudando minha pos para:", x, y)
     self.x = x
     self.y = y
-    -- print("mudei para: ", self.x, self.y)
 end
 
 function Cell:set_snap(snap)
@@ -20,7 +18,6 @@ end
 
 function Cell:set_value(new_value)
     self.value = new_value
-    -- print(self.value, " ", self.x, " ", self.y)
 end
 
 function Cell:set_origin(x, y)

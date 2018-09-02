@@ -16,8 +16,6 @@ function Board:reset()
 			self[i][j] = Cell:new(nil)
 			self[i][j]:set_snap(self.snap)
 			self[i][j]:set_pos(i, j)
-			-- if((j+i)%2 == 0) then self[i][j]:set_value('X')
-			-- else self[i][j]:set_value('O') end
 		end
 	end
 	self.turn = 'X'
@@ -69,7 +67,7 @@ function Board:play(char, x, y)
 		self[x][y].value = char
 		local test = self:check_win(char)
 		if test == true then 
-			print("winner: ", char)
+			-- print("winner: ", char)
 			return true
 		else
 			self:change_turn()
